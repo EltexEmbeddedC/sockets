@@ -16,7 +16,7 @@
 
 1.1 Протокол `TCP`
 
-```bash
+```
 alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t1_local_tcp_server
 I'm server
 socket path: /tmp/stream_serv
@@ -24,7 +24,7 @@ client sent: Hi?
 client will get: Hi!
 ```
 
-```bash
+```
 alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t1_local_tcp_client
 I'm client
 socket path: /tmp/stream_serv
@@ -34,7 +34,7 @@ server sent: Hi!
     
 1.2 Протокол `UDP`
 
-```bash
+```
 I'm server
 socket server path: /tmp/stream_server
 socket client path: /tmp/stream_client
@@ -42,7 +42,7 @@ client sent: Hi?
 client will get: Hi!
 ```
 
-```bash
+```
 I'm client
 socket server path: /tmp/stream_server
 socket client path: /tmp/stream_client
@@ -54,7 +54,7 @@ server sent: Hi!
 
 2.1 Протокол `TCP`
 
-```bash
+```
 I'm server
 Server listening on port 12345
 Client connected from 127.0.0.1:54486
@@ -62,7 +62,7 @@ Received from client: Hi?
 Sent to client: Hi!
 ```
 
-```bash
+```
 I'm client
 Client started on 127.0.0.1:54486
 Sent to server: Hi?
@@ -71,7 +71,7 @@ Received from server: Hi!
   
 2.2 Протокол `UDP`
 
-```bash
+```
 I'm server
 Server listening on port 12345
 Client connected from 127.0.0.1:52289
@@ -79,7 +79,7 @@ Received from client: Hi?
 Sent to client: Hi!
 ```
 
-```bash
+```
 I'm client
 Client started on 127.0.0.0:52289
 Sent to server: Hi?
