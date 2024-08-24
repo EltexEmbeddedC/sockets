@@ -15,6 +15,22 @@
 **1. Семейство сокетов `AF_LOCAL`**
 
 1.1 Протокол `TCP`
+
+```bash
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t1_local_tcp_server
+I'm server
+socket path: /tmp/stream_serv
+client sent: Hi?
+client will get: Hi!
+```
+
+```bash
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t1_local_tcp_client
+I'm client
+socket path: /tmp/stream_serv
+server will get: Hi?
+server sent: Hi!
+```
     
 1.2 Протокол `UDP`
   
