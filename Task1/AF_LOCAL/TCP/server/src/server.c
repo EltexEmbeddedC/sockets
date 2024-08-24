@@ -5,6 +5,7 @@ void run_server() {
     socklen_t cl_len = sizeof(struct sockaddr_un);
     int fd, cl_fd, n;
     char buf[BUFFER_SIZE], buf_copy[BUFFER_SIZE];
+
     fd = socket(AF_LOCAL, SOCK_STREAM, 0);
 
     if (fd == -1) {
@@ -43,7 +44,7 @@ void run_server() {
         exit(EXIT_FAILURE);
     }
 
-    strncpy(buf_copy, buf, BUFFER_SIZE);
+    strncpy(buf_copy, buf, 4);
 
     if (n == 3) {
         buf[2] = '!';
