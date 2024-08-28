@@ -89,3 +89,86 @@ Received from server: Hi!
 ### Задание 2. Реализовать 4 схемы сервера.
 
 1. Слушающий сервер получает запрос клиента, порождает новый сервер и отправляет его endpoint клиенту для последующего взаимодействия. При завершении работы с клиентом сервер уничтожается.
+
+Сервер:
+
+```
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type1_server 
+I'm server
+Server listening on port 7777
+Creating new server on port 17161
+New server listening on port 17161
+Received from client: Hi?
+Sent to client: Hello from new server! (17161)
+Creating new server on port 8664
+New server listening on port 8664
+Received from client: Hi?
+Sent to client: Hello from new server! (8664)
+Creating new server on port 10555
+New server listening on port 10555
+Received from client: Hi?
+Sent to client: Hello from new server! (10555)
+```
+
+Клиент:
+
+```
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type1_client 
+Received new server port: 17161
+Sent to new server: Hi?
+Received from new server: Hello from new server! (17161)
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type1_client 
+Received new server port: 8664
+Sent to new server: Hi?
+Received from new server: Hello from new server! (8664)
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type1_client 
+Received new server port: 10555
+Sent to new server: Hi?
+Received from new server: Hello from new server! (10555)
+```
+
+2. Параллельный сервер с пулом: слушающий сервер при запуске порождает определенное количество серверов. Если при появлении нового клиента все серверы заняты, слушающий сервер создает для него новый. Является модификацией первой схемы.
+
+Сервер:
+
+```
+
+```
+
+Клиент:
+
+```
+
+```
+
+3. Схема потребитель-производитель: слушающий сервер создает очередь для заявок и пулл серверов. Свободные серверы извлекают из очереди заявки, обрабатывают их и отсылают ответ клиенту. Является модицикацией второй схемы.
+
+Сервер:
+
+```
+
+```
+
+Клиент:
+
+```
+
+```
+
+4. Мультипротокольный сервер, построенный на мультиплексировании: один поток одновременно может принимать TCP и UDP запросы. Реализовать на select, poll, epoll.
+
+Сервер:
+
+```
+
+```
+
+Клиент:
+
+```
+
+```
+
+## Задание 3.
+
+## Задание 4.

@@ -1,5 +1,7 @@
 #include "../include/server.h"
 
+int server_fd;
+
 void* create_server(void* arg) {
     int new_port = *((int*)arg);
     free(arg);
@@ -63,7 +65,9 @@ void* create_server(void* arg) {
 }
 
 void run_server() {
-    int server_fd, new_socket;
+    signal(SIGINT, sigint_handler);
+    server_fd = 1;
+    int new_socket;
     struct sockaddr_in address;
     int addrlen = sizeof(address);
     char buffer[BUFFER_SIZE] = {0};
@@ -130,4 +134,9 @@ void run_server() {
     }
 
     close(server_fd);
+}
+
+void sigint_handler(int sig) {
+    close(server_fd);
+    exit(EXIT_SUCCESS);
 }
