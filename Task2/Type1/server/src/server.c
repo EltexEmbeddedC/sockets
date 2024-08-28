@@ -137,6 +137,7 @@ void run_server() {
 }
 
 void sigint_handler(int sig) {
+    printf("Exiting...\n");
     close(server_fd);
     exit(EXIT_SUCCESS);
 }
