@@ -15,13 +15,20 @@
 
 #define BASE_PORT 7777
 #define BUFFER_SIZE 1024
-#define NEW_PORT (BASE_PORT + rand() % 10000 + 1)
+#define SERVER_POOL_SIZE 5
 
-extern int server_fd;
+struct socket_info {
+    int server_fd;
+    int port;
+    int is_busy;
+    pthread_t thread_id;
+};
+
+extern struct socket_info* server_pool;
+extern pthread_mutex_t pool_mutex;
 
 void run_server();
-void* create_server(void* arg);
-struct sockaddr_in get_new_endpoint();
+void* server_thread(void* arg);
 void sigint_handler(int sig);
 
 #endif // SERVER_H

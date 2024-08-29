@@ -127,19 +127,48 @@ Sent to new server: Hi?
 Received from new server: Hello from new server! (10555)
 ```
 
-2. Параллельный сервер с пулом: слушающий сервер при запуске порождает определенное количество серверов. Если при появлении нового клиента все серверы заняты, слушающий сервер создает для него новый. Является модификацией первой схемы. ([Task2/Type2](https://github.com/EltexEmbeddedC/sockets/blob/main/Task2/Type2))
+2. Параллельный сервер с пулом: слушающий сервер при запуске порождает определенное количество серверов. Если при появлении нового клиента все серверы заняты, слушающий сервер просит клиента повторить попытку позже. Является модификацией первой схемы. ([Task2/Type2](https://github.com/EltexEmbeddedC/sockets/blob/main/Task2/Type2))
 
 Сервер:
 
 ```
-
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type2_server 
+Created server on port 7778
+Server listening on port 7778
+Created server on port 7779
+Server listening on port 7779
+Created server on port 7780
+Server listening on port 7780
+Created server on port 7781
+Server listening on port 7781
+Created server on port 7782
+Main server listening on port 7777
+Server listening on port 7782
+Received from client on port 7778: Hi!
+Sent to client on port 7778: Hello from server on port 7778!
+Received from client on port 7779: Hi!
+Sent to client on port 7779: Hello from server on port 7779!
+Received from client on port 7778: Hi!
+Sent to client on port 7778: Hello from server on port 7778!
 ```
 
 Клиент:
 
 ```
-
+./../Task2/Type2/run_clients_parallel.sh
+Received new server port: 7778
+Sent to server on port 7778: Hi!
+Received from server on port 7778: Hello from server on port 7778!
+Received new server port: 7779
+Sent to server on port 7779: Hi!
+Received from server on port 7779: Hello from server on port 7779!
+Received new server port: 7778
+Sent to server on port 7778: Hi!
+Received from server on port 7778: Hello from server on port 7778!
+Все клиенты завершили работу.
 ```
+
+> .sh скрипт запускает параллельно трех клиентов
 
 3. Схема потребитель-производитель: слушающий сервер создает очередь для заявок и пулл серверов. Свободные серверы извлекают из очереди заявки, обрабатывают их и отсылают ответ клиенту. Является модицикацией второй схемы. ([Task2/Type3](https://github.com/EltexEmbeddedC/sockets/blob/main/Task2/Type3))
 
