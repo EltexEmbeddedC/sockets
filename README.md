@@ -14,7 +14,7 @@
 
 **1. Семейство сокетов `AF_LOCAL`**
 
-1.1 Протокол `TCP`
+1.1 Протокол `TCP` ([Task1/AF_LOCAL/TCP](https://github.com/EltexEmbeddedC/sockets/blob/main/Task1/AF_LOCAL/TCP))
 
 ```
 alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t1_local_tcp_server
@@ -32,7 +32,7 @@ server will get: Hi?
 server sent: Hi!
 ```
     
-1.2 Протокол `UDP`
+1.2 Протокол `UDP` ([Task1/AF_LOCAL/UDP](https://github.com/EltexEmbeddedC/sockets/blob/main/Task1/AF_LOCAL/UDP))
 
 ```
 I'm server
@@ -52,7 +52,7 @@ server sent: Hi!
   
 **2. Семейство сокетов `AF_INET`**
 
-2.1 Протокол `TCP`
+2.1 Протокол `TCP` ([Task1/AF_INET/TCP](https://github.com/EltexEmbeddedC/sockets/blob/main/Task1/AF_INET/TCP))
 
 ```
 I'm server
@@ -69,7 +69,7 @@ Sent to server: Hi?
 Received from server: Hi!
 ```
   
-2.2 Протокол `UDP`
+2.2 Протокол `UDP` ([Task1/AF_INET/UDP](https://github.com/EltexEmbeddedC/sockets/blob/main/Task1/AF_INET/UDP))
 
 ```
 I'm server
@@ -88,7 +88,7 @@ Received from server: Hi!
 
 ### Задание 2. Реализовать 4 схемы сервера.
 
-1. Слушающий сервер получает запрос клиента, порождает новый сервер и отправляет его endpoint клиенту для последующего взаимодействия. При завершении работы с клиентом сервер уничтожается.
+1. Слушающий сервер получает запрос клиента, порождает новый сервер и отправляет его endpoint клиенту для последующего взаимодействия. При завершении работы с клиентом сервер уничтожается. ([Task2/Type1](https://github.com/EltexEmbeddedC/sockets/blob/main/Task2/Type1))
 
 Сервер:
 
@@ -127,7 +127,7 @@ Sent to new server: Hi?
 Received from new server: Hello from new server! (10555)
 ```
 
-2. Параллельный сервер с пулом: слушающий сервер при запуске порождает определенное количество серверов. Если при появлении нового клиента все серверы заняты, слушающий сервер создает для него новый. Является модификацией первой схемы.
+2. Параллельный сервер с пулом: слушающий сервер при запуске порождает определенное количество серверов. Если при появлении нового клиента все серверы заняты, слушающий сервер создает для него новый. Является модификацией первой схемы. ([Task2/Type2](https://github.com/EltexEmbeddedC/sockets/blob/main/Task2/Type2))
 
 Сервер:
 
@@ -141,7 +141,7 @@ Received from new server: Hello from new server! (10555)
 
 ```
 
-3. Схема потребитель-производитель: слушающий сервер создает очередь для заявок и пулл серверов. Свободные серверы извлекают из очереди заявки, обрабатывают их и отсылают ответ клиенту. Является модицикацией второй схемы.
+3. Схема потребитель-производитель: слушающий сервер создает очередь для заявок и пулл серверов. Свободные серверы извлекают из очереди заявки, обрабатывают их и отсылают ответ клиенту. Является модицикацией второй схемы. ([Task2/Type3](https://github.com/EltexEmbeddedC/sockets/blob/main/Task2/Type3))
 
 Сервер:
 
@@ -155,7 +155,7 @@ Received from new server: Hello from new server! (10555)
 
 ```
 
-4. Мультипротокольный сервер, построенный на мультиплексировании: один поток одновременно может принимать TCP и UDP запросы. Реализовать на select, poll, epoll.
+4. Мультипротокольный сервер, построенный на мультиплексировании: один поток одновременно может принимать TCP и UDP запросы. Реализовать на select, poll, epoll. ([Task2/Type4](https://github.com/EltexEmbeddedC/sockets/blob/main/Task2/Type4))
 
 Сервер:
 
