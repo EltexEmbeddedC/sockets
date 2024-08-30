@@ -182,14 +182,40 @@ Received from server on port 7778: Hello from server on port 7778!
 Сервер:
 
 ```
-
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type3_server 
+Created server thread for port 7778
+Server listening on port 7778
+Created server thread for port 7779
+Created server thread for port 7780
+Created server thread for port 7781
+Server listening on port 7780
+Server listening on port 7779
+Server listening on port 7781
+Created server thread for port 7782
+Server listening on port 7782
+Main server listening on port 7777
+Received from client on port 7778: Hi!
+Sent to client on port 7778: Hello from server on port 7778!
+Received from client on port 7780: Hi!
+Sent to client on port 7780: Hello from server on port 7780!
+Received from client on port 7779: Hi!
+Sent to client on port 7779: Hello from server on port 7779!
 ```
 
 Клиент:
 
 ```
-
+./../Task2/Type3/run_clients_parallel.sh
+Sent to server on port 7777: Hi!
+Received from server: Hello from server on port 7778!
+Sent to server on port 7777: Hi!
+Received from server: Hello from server on port 7780!
+Sent to server on port 7777: Hi!
+Received from server: Hello from server on port 7779!
+Все клиенты завершили работу.
 ```
+
+> .sh скрипт запускает параллельно трех клиентов
 
 4. Мультипротокольный сервер, построенный на мультиплексировании: один поток одновременно может принимать TCP и UDP запросы. Реализовать на select, poll, epoll. ([Task2/Type4](https://github.com/EltexEmbeddedC/sockets/blob/main/Task2/Type4))
 

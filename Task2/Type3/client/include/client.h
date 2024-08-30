@@ -11,9 +11,9 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
-#define PORT 12345
+#define PORT 7777
 #define BUFFER_SIZE 1024
 
-void run_client();
+void connect_to_server(int port);
 
 #endif // CLIENT_H
