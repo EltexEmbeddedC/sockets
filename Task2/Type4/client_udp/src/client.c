@@ -7,23 +7,12 @@
 
 void run_client() {
     int sock;
-    struct sockaddr_in serv_addr, client_addr;
-    socklen_t client_addr_len = sizeof(client_addr);
+    struct sockaddr_in serv_addr;
     char buffer[BUFFER_SIZE] = {0};
     char *message = "Hi?";
 
     if ((sock = socket(AF_INET, SOCK_DGRAM, 0)) == -1) {
         perror("socket");
-        exit(EXIT_FAILURE);
-    }
-
-    client_addr.sin_family = AF_INET;
-    client_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
-    client_addr.sin_port = 0;
-
-    if (bind(sock, (struct sockaddr *)&client_addr, sizeof(client_addr)) == -1) {
-        perror("bind");
-        close(sock);
         exit(EXIT_FAILURE);
     }
 
@@ -41,16 +30,6 @@ void run_client() {
         close(sock);
         exit(EXIT_FAILURE);
     }
-
-    if (getsockname(sock, (struct sockaddr *)&client_addr, &client_addr_len) == -1) {
-        perror("getsockname");
-        close(sock);
-        exit(EXIT_FAILURE);
-    }
-
-    char client_ip[INET_ADDRSTRLEN];
-    inet_ntop(AF_INET, &client_addr.sin_addr, client_ip, INET_ADDRSTRLEN);
-    printf("I'm client\nClient started on %s:%d\n", client_ip, ntohs(client_addr.sin_port));
 
     printf("Sent to server: %s\n", message);
 

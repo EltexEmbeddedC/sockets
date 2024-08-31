@@ -1,4 +1,4 @@
-PROGRAM = t2_type4_client
+PROGRAM = t2_type4_udp_client
 BINDIR = ../../../bin
 SRCDIR = src
 INCDIR = include

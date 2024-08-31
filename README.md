@@ -217,18 +217,34 @@ Received from server: Hello from server on port 7779!
 
 > .sh скрипт запускает параллельно трех клиентов
 
-4. Мультипротокольный сервер, построенный на мультиплексировании: один поток одновременно может принимать TCP и UDP запросы. Реализовать на select, poll, epoll. ([Task2/Type4](https://github.com/EltexEmbeddedC/sockets/blob/main/Task2/Type4))
+4. Мультипротокольный сервер, построенный на мультиплексировании: один поток ***вне зависимости от очередности*** может принимать как TCP, так и UDP запросы. Реализовать на select, poll, epoll. ([Task2/Type4](https://github.com/EltexEmbeddedC/sockets/blob/main/Task2/Type4))
 
 Сервер:
 
 ```
-
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type4_server 
+Server listening on TCP port 12345
+Server listening on UDP port 12346
+TCP fd got a message
+Client connected from 127.0.0.1:48368
+Received from client: Hi?
+Sent to client: Hi!
+UDP fd got a message
+Client connected from 127.0.0.1:54352
+Received from client: Hi?
 ```
 
 Клиент:
 
 ```
-
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type4_tcp_client 
+I'm client
+Client started on 127.0.0.1:48368
+Sent to server: Hi?
+Received from server: Hi!
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type4_udp_client 
+Sent to server: Hi?
+Received from server: Hi!
 ```
 
 ## Задание 3. Реализовать сервер, посылающий multicast сообщения.
