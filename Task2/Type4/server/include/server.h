@@ -13,12 +13,19 @@
 #include <string.h>
 #include <netinet/in.h>
 #include <unistd.h>
+#include <poll.h>
+#include <sys/epoll.h>
+#include <malloc.h>
+#include <errno.h>
 
 #define PORT_TCP 12345
 #define PORT_UDP 12346
 #define BUFFER_SIZE 1024
 
-void run_server();
+void run_server_select();
+void run_server_poll();
+void run_server_epoll();
+
 void process_tcp(int server_fd, struct sockaddr_in address);
 void process_udp(int server_fd);
 void init_tcp_fd(int* server_fd_tcp, struct sockaddr_in* address_tcp);

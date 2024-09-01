@@ -219,18 +219,27 @@ Received from server: Hello from server on port 7779!
 
 4. Мультипротокольный сервер, построенный на мультиплексировании: один поток ***вне зависимости от очередности*** может принимать как TCP, так и UDP запросы. Реализовать на select, poll, epoll. ([Task2/Type4](https://github.com/EltexEmbeddedC/sockets/blob/main/Task2/Type4))
 
+Программу нужно запускать с указанием флага системного вызова, который будет использоваться (`--select`, `--poll`, `--epoll`):
+
+```
+./исполняемый_файл --флаг
+```
+
+Ниже приведен пример запуска сервера с использованием epoll:
+
 Сервер:
 
 ```
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type4_server 
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type4_server --epoll
+EPOLL
 Server listening on TCP port 12345
 Server listening on UDP port 12346
 TCP fd got a message
-Client connected from 127.0.0.1:48368
+Client connected from 127.0.0.1:42310
 Received from client: Hi?
 Sent to client: Hi!
 UDP fd got a message
-Client connected from 127.0.0.1:54352
+Client connected from 127.0.0.1:36815
 Received from client: Hi?
 ```
 
@@ -239,7 +248,7 @@ Received from client: Hi?
 ```
 alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type4_tcp_client 
 I'm client
-Client started on 127.0.0.1:48368
+Client started on 127.0.0.1:42310
 Sent to server: Hi?
 Received from server: Hi!
 alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type4_udp_client 

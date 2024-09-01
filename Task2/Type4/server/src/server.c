@@ -2,7 +2,7 @@
 
 int server_fd_udp, server_fd_tcp;
 
-void run_server() {
+void run_server_select() {
     signal(SIGINT, sigint_handler);
 
     fd_set readfds;
@@ -14,7 +14,7 @@ void run_server() {
     init_udp_fd(&server_fd_udp, &address_udp);
     init_tcp_fd(&server_fd_tcp, &address_tcp);
     
-    printf("Server listening on TCP port %d\n", PORT_TCP);
+    printf("SELECT\nServer listening on TCP port %d\n", PORT_TCP);
     printf("Server listening on UDP port %d\n", PORT_UDP);
 
     while (1) {
@@ -27,12 +27,118 @@ void run_server() {
         if (ready == -1) {
             perror("select");
             exit(EXIT_FAILURE);
-        } else if (FD_ISSET(server_fd_tcp, &readfds)) {
+        }
+        if (FD_ISSET(server_fd_tcp, &readfds)) {
             printf("TCP fd got a message\n");
             process_tcp(server_fd_tcp, address_tcp);
-        } else if (FD_ISSET(server_fd_udp, &readfds)) {
+        }
+        if (FD_ISSET(server_fd_udp, &readfds)) {
             printf("UDP fd got a message\n");
             process_udp(server_fd_udp);
+        }
+    }
+
+    close(server_fd_tcp);
+    close(server_fd_udp);
+}
+
+void run_server_poll() {
+    int ready;
+    struct pollfd* pollFD;
+    pollFD = calloc(2, sizeof(struct pollfd));
+
+    struct sockaddr_in address_udp, address_tcp;
+
+    init_udp_fd(&server_fd_udp, &address_udp);
+    init_tcp_fd(&server_fd_tcp, &address_tcp);
+    
+    printf("POLL\nServer listening on TCP port %d\n", PORT_TCP);
+    printf("Server listening on UDP port %d\n", PORT_UDP);
+
+    pollFD[0].fd = server_fd_tcp;
+    pollFD[0].events = POLLIN;
+
+    pollFD[1].fd = server_fd_udp;
+    pollFD[1].events = POLLIN;
+
+
+    while (1) {
+        ready = poll(pollFD, 2, -1);
+
+        if (ready == -1) {
+            perror("poll");
+            exit(EXIT_FAILURE);
+        }
+        if (pollFD[0].revents & POLLIN) {
+            printf("TCP fd got a message\n");
+            process_tcp(server_fd_tcp, address_tcp);
+        }
+        if (pollFD[1].revents & POLLIN) {
+            printf("UDP fd got a message\n");
+            process_udp(server_fd_udp);
+        }
+    }
+
+    free(pollFD);
+    close(server_fd_tcp);
+    close(server_fd_udp);
+}
+
+void run_server_epoll() {
+    int ready, epfd;
+    struct epoll_event ev;
+    struct epoll_event evlist[2];
+    struct sockaddr_in address_udp, address_tcp;
+
+    init_udp_fd(&server_fd_udp, &address_udp);
+    init_tcp_fd(&server_fd_tcp, &address_tcp);
+    
+    printf("EPOLL\nServer listening on TCP port %d\n", PORT_TCP);
+    printf("Server listening on UDP port %d\n", PORT_UDP);
+
+    epfd = epoll_create(2);
+    if (epfd == -1) {
+        perror("epoll");
+        exit(EXIT_FAILURE);
+    }
+
+    ev.data.fd = server_fd_tcp;
+    ev.events = EPOLLIN;
+    if (epoll_ctl(epfd, EPOLL_CTL_ADD, server_fd_tcp, &ev) == -1) {
+        perror("epoll");
+        exit(EXIT_FAILURE);
+    }
+
+    ev.data.fd = server_fd_udp;
+    ev.events = EPOLLIN;
+    if (epoll_ctl(epfd, EPOLL_CTL_ADD, server_fd_udp, &ev) == -1) {
+        perror("epoll");
+        exit(EXIT_FAILURE);
+    }
+
+    while (1) {
+        ready = epoll_wait(epfd, evlist, 2, -1);
+
+        if (ready == -1) {
+            if (errno == EINTR) {
+                continue;
+            } else {
+                perror("epoll");
+                exit(EXIT_FAILURE);
+            }
+        }
+
+        for (int i = 0; i < ready; i++) {
+            if (evlist[i].events & EPOLLIN) {
+                if (evlist[i].data.fd == server_fd_tcp) {
+                    printf("TCP fd got a message\n");
+                    process_tcp(server_fd_tcp, address_tcp);
+                }
+                if (evlist[i].data.fd == server_fd_udp) {
+                    printf("UDP fd got a message\n");
+                    process_udp(server_fd_udp);
+                }
+            }
         }
     }
 
