@@ -9,6 +9,8 @@ all:
 	$(MAKE) -C Task2/Type2
 	$(MAKE) -C Task2/Type3
 	$(MAKE) -C Task2/Type4
+	$(MAKE) -C Task3
+	$(MAKE) -C Task4
 
 clean:
 	$(MAKE) -C Task1/AF_INET/TCP clean
@@ -19,3 +21,5 @@ clean:
 	$(MAKE) -C Task2/Type2 clean
 	$(MAKE) -C Task2/Type3 clean
 	$(MAKE) -C Task2/Type4 clean
+	$(MAKE) -C Task3 clean
+	$(MAKE) -C Task4 clean

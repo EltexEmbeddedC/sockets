@@ -256,30 +256,42 @@ Sent to server: Hi?
 Received from server: Hi!
 ```
 
-## Задание 3. Реализовать сервер, посылающий multicast сообщения.
+## Задание 3. Реализовать сервер, посылающий multicast сообщения. ([Task3](https://github.com/EltexEmbeddedC/sockets/blob/main/Task3))
 
 Сервер:
 
 ```
-
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t3_server 
+Sent multicast: Hi!
+Sent multicast: Hi!
+...
 ```
 
 Клиент:
 
 ```
-
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t3_client 
+Got from server: Hi!
+Got from server: Hi!
+...
 ```
 
-## Задание 4. Реализовать сервер, посылающий broadcast сообщения.
+## Задание 4. Реализовать сервер, посылающий broadcast сообщения. ([Task4](https://github.com/EltexEmbeddedC/sockets/blob/main/Task4))
 
 Сервер:
 
 ```
-
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t4_server 
+Sent broadcast: Hi!
+Sent broadcast: Hi!
+...
 ```
 
 Клиент:
 
 ```
-
+alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t4_client 
+Got from server: Hi!
+Got from server: Hi!
+...
 ```
