@@ -25,14 +25,14 @@
 
 1.1 Протокол `TCP` ([Task1/AF_LOCAL/TCP](https://github.com/EltexEmbeddedC/sockets/blob/main/Task1/AF_LOCAL/TCP))
 
-```bash
+```
 I'm server
 socket path: /tmp/stream_serv
 client sent: Hi?
 client will get: Hi!
 ```
 
-```bash
+```
 I'm client
 socket path: /tmp/stream_serv
 server will get: Hi?
@@ -41,7 +41,7 @@ server sent: Hi!
     
 1.2 Протокол `UDP` ([Task1/AF_LOCAL/UDP](https://github.com/EltexEmbeddedC/sockets/blob/main/Task1/AF_LOCAL/UDP))
 
-```bash
+```
 I'm server
 socket server path: /tmp/stream_server
 socket client path: /tmp/stream_client
@@ -49,7 +49,7 @@ client sent: Hi?
 client will get: Hi!
 ```
 
-```bash
+```
 I'm client
 socket server path: /tmp/stream_server
 socket client path: /tmp/stream_client
@@ -61,7 +61,7 @@ server sent: Hi!
 
 2.1 Протокол `TCP` ([Task1/AF_INET/TCP](https://github.com/EltexEmbeddedC/sockets/blob/main/Task1/AF_INET/TCP))
 
-```bash
+```
 I'm server
 Server listening on port 12345
 Client connected from 127.0.0.1:54486
