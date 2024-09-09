@@ -25,16 +25,14 @@
 
 1.1 Протокол `TCP` ([Task1/AF_LOCAL/TCP](https://github.com/EltexEmbeddedC/sockets/blob/main/Task1/AF_LOCAL/TCP))
 
-```
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t1_local_tcp_server
+```bash
 I'm server
 socket path: /tmp/stream_serv
 client sent: Hi?
 client will get: Hi!
 ```
 
-```
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t1_local_tcp_client
+```bash
 I'm client
 socket path: /tmp/stream_serv
 server will get: Hi?
@@ -43,7 +41,7 @@ server sent: Hi!
     
 1.2 Протокол `UDP` ([Task1/AF_LOCAL/UDP](https://github.com/EltexEmbeddedC/sockets/blob/main/Task1/AF_LOCAL/UDP))
 
-```
+```bash
 I'm server
 socket server path: /tmp/stream_server
 socket client path: /tmp/stream_client
@@ -51,7 +49,7 @@ client sent: Hi?
 client will get: Hi!
 ```
 
-```
+```bash
 I'm client
 socket server path: /tmp/stream_server
 socket client path: /tmp/stream_client
@@ -63,7 +61,7 @@ server sent: Hi!
 
 2.1 Протокол `TCP` ([Task1/AF_INET/TCP](https://github.com/EltexEmbeddedC/sockets/blob/main/Task1/AF_INET/TCP))
 
-```
+```bash
 I'm server
 Server listening on port 12345
 Client connected from 127.0.0.1:54486
@@ -71,7 +69,7 @@ Received from client: Hi?
 Sent to client: Hi!
 ```
 
-```
+```bash
 I'm client
 Client started on 127.0.0.1:54486
 Sent to server: Hi?
@@ -80,7 +78,7 @@ Received from server: Hi!
   
 2.2 Протокол `UDP` ([Task1/AF_INET/UDP](https://github.com/EltexEmbeddedC/sockets/blob/main/Task1/AF_INET/UDP))
 
-```
+```bash
 I'm server
 Server listening on port 12345
 Client connected from 127.0.0.1:52289
@@ -88,7 +86,7 @@ Received from client: Hi?
 Sent to client: Hi!
 ```
 
-```
+```bash
 I'm client
 Client started on 127.0.0.0:52289
 Sent to server: Hi?
@@ -101,8 +99,8 @@ Received from server: Hi!
 
 Сервер:
 
-```
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type1_server 
+```bash
+> ./t2_type1_server 
 I'm server
 Server listening on port 7777
 Creating new server on port 17161
@@ -121,16 +119,18 @@ Sent to client: Hello from new server! (10555)
 
 Клиент:
 
-```
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type1_client 
+```bash
+> ./t2_type1_client 
 Received new server port: 17161
 Sent to new server: Hi?
 Received from new server: Hello from new server! (17161)
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type1_client 
+
+> ./t2_type1_client 
 Received new server port: 8664
 Sent to new server: Hi?
 Received from new server: Hello from new server! (8664)
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type1_client 
+
+> ./t2_type1_client 
 Received new server port: 10555
 Sent to new server: Hi?
 Received from new server: Hello from new server! (10555)
@@ -140,8 +140,8 @@ Received from new server: Hello from new server! (10555)
 
 Сервер:
 
-```
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type2_server 
+```bash
+> ./t2_type2_server 
 Created server on port 7778
 Server listening on port 7778
 Created server on port 7779
@@ -163,8 +163,8 @@ Sent to client on port 7778: Hello from server on port 7778!
 
 Клиент:
 
-```
-./../Task2/Type2/run_clients_parallel.sh
+```bash
+> ./../Task2/Type2/run_clients_parallel.sh
 Received new server port: 7778
 Sent to server on port 7778: Hi!
 Received from server on port 7778: Hello from server on port 7778!
@@ -183,8 +183,8 @@ Received from server on port 7778: Hello from server on port 7778!
 
 Сервер:
 
-```
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type3_server 
+```bash
+> ./t2_type3_server 
 Created server thread for port 7778
 Server listening on port 7778
 Created server thread for port 7779
@@ -206,8 +206,8 @@ Sent to client on port 7779: Hello from server on port 7779!
 
 Клиент:
 
-```
-./../Task2/Type3/run_clients_parallel.sh
+```bash
+> ./../Task2/Type3/run_clients_parallel.sh
 Sent to server on port 7777: Hi!
 Received from server: Hello from server on port 7778!
 Sent to server on port 7777: Hi!
@@ -223,7 +223,7 @@ Received from server: Hello from server on port 7779!
 
 Программу нужно запускать с указанием флага системного вызова, который будет использоваться (`--select`, `--poll`, `--epoll`):
 
-```
+```bash
 ./исполняемый_файл --флаг
 ```
 
@@ -231,8 +231,8 @@ Received from server: Hello from server on port 7779!
 
 Сервер:
 
-```
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type4_server --epoll
+```bash
+> ./t2_type4_server --epoll
 EPOLL
 Server listening on TCP port 12345
 Server listening on UDP port 12346
@@ -247,13 +247,14 @@ Received from client: Hi?
 
 Клиент:
 
-```
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type4_tcp_client 
+```bash
+> ./t2_type4_tcp_client 
 I'm client
 Client started on 127.0.0.1:42310
 Sent to server: Hi?
 Received from server: Hi!
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t2_type4_udp_client 
+
+> ./t2_type4_udp_client 
 Sent to server: Hi?
 Received from server: Hi!
 ```
@@ -262,8 +263,8 @@ Received from server: Hi!
 
 Сервер:
 
-```
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t3_server 
+```bash
+> ./t3_server 
 Sent multicast: Hi!
 Sent multicast: Hi!
 ...
@@ -271,8 +272,8 @@ Sent multicast: Hi!
 
 Клиент:
 
-```
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t3_client 
+```bash
+> ./t3_client 
 Got from server: Hi!
 Got from server: Hi!
 ...
@@ -282,8 +283,8 @@ Got from server: Hi!
 
 Сервер:
 
-```
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t4_server 
+```bash
+> ./t4_server 
 Sent broadcast: Hi!
 Sent broadcast: Hi!
 ...
@@ -291,8 +292,8 @@ Sent broadcast: Hi!
 
 Клиент:
 
-```
-alexey@alexey-HVY-WXX9:~/Projects/Eltex/HW/sockets/bin$ ./t4_client 
+```bash
+> ./t4_client 
 Got from server: Hi!
 Got from server: Hi!
 ...
@@ -320,12 +321,19 @@ Hi!
 
 Клиент:
 
-```
-
+```bash
+> sudo ./t6_client 
+Client started on port 9999
+Sent "Hi?" to server on port 12345
+Received from server: Hi!
 ```
 
 Сервер:
 
-```
-
+```bash
+> ./t6_server 
+Server listening on port 12345
+Client connected from port 9999
+Received from client: Hi?
+Sent to client: Hi!
 ```
