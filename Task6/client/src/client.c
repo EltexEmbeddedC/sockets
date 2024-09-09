@@ -1,7 +1,7 @@
 #include "../include/client.h"
 
 /*
- * run_server - used to start sniffer 
+ * run_server - used to start client
  */
 void run_server() {
     int fd;

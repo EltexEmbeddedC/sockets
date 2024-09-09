@@ -69,7 +69,7 @@ Received from client: Hi?
 Sent to client: Hi!
 ```
 
-```bash
+```
 I'm client
 Client started on 127.0.0.1:54486
 Sent to server: Hi?
@@ -78,7 +78,7 @@ Received from server: Hi!
   
 2.2 Протокол `UDP` ([Task1/AF_INET/UDP](https://github.com/EltexEmbeddedC/sockets/blob/main/Task1/AF_INET/UDP))
 
-```bash
+```
 I'm server
 Server listening on port 12345
 Client connected from 127.0.0.1:52289
@@ -86,7 +86,7 @@ Received from client: Hi?
 Sent to client: Hi!
 ```
 
-```bash
+```
 I'm client
 Client started on 127.0.0.0:52289
 Sent to server: Hi?
@@ -99,7 +99,7 @@ Received from server: Hi!
 
 Сервер:
 
-```bash
+```
 > ./t2_type1_server 
 I'm server
 Server listening on port 7777
@@ -119,7 +119,7 @@ Sent to client: Hello from new server! (10555)
 
 Клиент:
 
-```bash
+```
 > ./t2_type1_client 
 Received new server port: 17161
 Sent to new server: Hi?
@@ -140,7 +140,7 @@ Received from new server: Hello from new server! (10555)
 
 Сервер:
 
-```bash
+```
 > ./t2_type2_server 
 Created server on port 7778
 Server listening on port 7778
@@ -163,7 +163,7 @@ Sent to client on port 7778: Hello from server on port 7778!
 
 Клиент:
 
-```bash
+```
 > ./../Task2/Type2/run_clients_parallel.sh
 Received new server port: 7778
 Sent to server on port 7778: Hi!
@@ -183,7 +183,7 @@ Received from server on port 7778: Hello from server on port 7778!
 
 Сервер:
 
-```bash
+```
 > ./t2_type3_server 
 Created server thread for port 7778
 Server listening on port 7778
@@ -206,7 +206,7 @@ Sent to client on port 7779: Hello from server on port 7779!
 
 Клиент:
 
-```bash
+```
 > ./../Task2/Type3/run_clients_parallel.sh
 Sent to server on port 7777: Hi!
 Received from server: Hello from server on port 7778!
@@ -231,7 +231,7 @@ Received from server: Hello from server on port 7779!
 
 Сервер:
 
-```bash
+```
 > ./t2_type4_server --epoll
 EPOLL
 Server listening on TCP port 12345
@@ -247,7 +247,7 @@ Received from client: Hi?
 
 Клиент:
 
-```bash
+```
 > ./t2_type4_tcp_client 
 I'm client
 Client started on 127.0.0.1:42310
