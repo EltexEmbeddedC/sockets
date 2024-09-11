@@ -344,11 +344,18 @@ Sent to client: Hi!
 Клиент:
 
 ```bash
-
+> sudo ./t7_client 
+Client started on port 9999
+Sent "Hi?" to server on port 12345
+Received from server: Hi!
 ```
 
 Сервер:
 
 ```bash
-
+> ./t7_server 
+Server listening on port 12345
+Client connected from port 9999
+Received from client: Hi?
+Sent to client: Hi!
 ```
