@@ -1,14 +1,14 @@
 #include "../include/client.h"
 
 /*
- * run_server - used to start client
+ * run_client - used to start client
  */
-void run_server() {
+void run_client() {
     int fd;
     char buf[BUFFER_SIZE];
     char message[] = "Hi?";
     struct sockaddr_in addr;
-    struct UdpHeader header;
+    struct udphdr header;
 
 
     fd = socket(AF_INET, SOCK_RAW, IPPROTO_UDP);
@@ -22,10 +22,7 @@ void run_server() {
     addr.sin_family = AF_INET;
     addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
     
-    header.src_port = htons(CLIENT_PORT);
-    header.targ_port = htons(SERVER_PORT);
-    header.length = htons(sizeof(header)+sizeof(message));
-    header.checksum = 0;
+    fill_udp_header(&header, sizeof(message));
     
     memcpy((void *)buf, (void *)&header, sizeof(header));
     memcpy((void *)(buf+sizeof(header)), (void *)message, sizeof(message));
@@ -50,6 +47,18 @@ void run_server() {
     }
 
     close(fd);
+}
+
+/*
+ * fill_udp_header - Fills UDP header
+ * @udp_header - pointer to the UDP struct
+ * @msg_size - the length of the message
+ */
+void fill_udp_header(struct udphdr* udp_header, int msg_size) {
+    udp_header->uh_sport = htons(CLIENT_PORT);
+    udp_header->uh_dport = htons(SERVER_PORT);
+    udp_header->len = htons(sizeof(udp_header) + msg_size);
+    udp_header->check = 0;
 }
 
 /*

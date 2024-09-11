@@ -12,6 +12,7 @@ all:
 	$(MAKE) -C Task3
 	$(MAKE) -C Task4
 	$(MAKE) -C Task5
+	$(MAKE) -C Task6
 	$(MAKE) -C Task7
 
 clean:

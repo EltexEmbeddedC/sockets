@@ -1,6 +1,6 @@
 #include "../include/client.h"
 
 int main() {
-    run_server();
+    run_client();
     return 0;
 }
