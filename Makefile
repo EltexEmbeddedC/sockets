@@ -14,6 +14,7 @@ all:
 	$(MAKE) -C Task5
 	$(MAKE) -C Task6
 	$(MAKE) -C Task7
+	$(MAKE) -C Task8
 
 clean:
 	$(MAKE) -C Task1/AF_INET/TCP clean
@@ -29,3 +30,4 @@ clean:
 	$(MAKE) -C Task5 clean
 	$(MAKE) -C Task6 clean
 	$(MAKE) -C Task7 clean
+	$(MAKE) -C Task8 clean
