@@ -321,15 +321,6 @@ Hi!
 
 ## Задание 6. Написать RAW клиента, который вручную заполняет UDP заголовок пакета и отправляет пакет серверу. Сервер получает строку и отправляет ответ клиенту. ([Task6](https://github.com/EltexEmbeddedC/sockets/blob/main/Task6))
 
-Клиент:
-
-```bash
-> sudo ./t6_client 
-Client started on port 9999
-Sent "Hi?" to server on port 12345
-Received from server: Hi!
-```
-
 Сервер:
 
 ```bash
@@ -340,16 +331,16 @@ Received from client: Hi?
 Sent to client: Hi!
 ```
 
-## Задание 7. Дополнить RAW клиента из задания 6: помимо заголовка транспортного уровня необходимо также вручную заполнить и сетевой. ([Task7](https://github.com/EltexEmbeddedC/sockets/blob/main/Task7))
-
 Клиент:
 
 ```bash
-> sudo ./t7_client 
+> sudo ./t6_client 
 Client started on port 9999
 Sent "Hi?" to server on port 12345
 Received from server: Hi!
 ```
+
+## Задание 7. Дополнить RAW клиента из задания 6: помимо заголовка транспортного уровня необходимо также вручную заполнить и сетевой. ([Task7](https://github.com/EltexEmbeddedC/sockets/blob/main/Task7))
 
 Сервер:
 
@@ -361,20 +352,53 @@ Received from client: Hi?
 Sent to client: Hi!
 ```
 
+Клиент:
+
+```bash
+> sudo ./t7_client 
+Client started on port 9999
+Sent "Hi?" to server on port 12345
+Received from server: Hi!
+```
+
 ## Задание 8. Дополнить RAW клиента из задания 7: помимо заголовков транспортного и сетевого уровней необходимо также вручную заполнить и канальный. ([Task8](https://github.com/EltexEmbeddedC/sockets/blob/main/Task8))
 
 Для того, чтобы пакет спустился до канального уровня, MAC-адреса назначения и источника должны отличаться. Следовательно, для тестирования программы были выбраны 2 разных компьютера, находящиеся в одной локальной сети.
 
-ЕЩЕ НЕ ГОТОВО
+Для заполнения заголовков уровней L2, L3 и L4 необходимо узнать следующее:
 
-Клиент:
+1. MAC-адрес клиента (`08:00:27:9f:2f:af`);
+2. MAC-адрес сервера (`08:00:27:a4:32:28`);
+3. Имя сетевого интервейса (`enp0s3`);
+4. IP-адрес клиента (`10.0.2.15`);
+5. IP-адрес сервера (`10.0.2.4`);
+6. Порт клиента (`9999`);
+7. Порт сервера (`12345`).
 
-```bash
+### Тестирование
 
+Запустим сервер, клиента и увидим в Wireshark успешную передачу пакетов в обе стороны:
+
+```
+1	0.000000000	10.0.2.15	10.0.2.4	UDP	46	9999 → 12345 Len=4
+2	0.002259366	10.0.2.4	10.0.2.15	UDP	60	12345 → 9999 Len=3
 ```
 
 Сервер:
 
 ```bash
+> ./t8_server 
+Server listening on port 12345
+Client connected from port 9999
+Received from client: Hi?
+Sent to client: Hi!
+```
 
+Клиент:
+
+```bash
+> sudo ./t8_client 
+Client started on interface enp0s3
+Sent "Hi?" to server on port 12345
+Received from server: Hi!
 ```
